@@ -15,17 +15,24 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('logo')->nullable();
             $table->string('tags');
-            $table->string('coordinates')->nullable();
-            $table->string('company');
-            $table->string('location');
-            $table->string('email');
-            $table->string('website');
+            $table->number('small')->nullable();
+            $table->number('medium')->nullable();
+            $table->number('large')->nullable();
+            // $table->string('coordinates')->nullable();
+            // $table->string('company');
+            // $table->string('location');
+            // $table->string('email');
+            // $table->string('website');
             $table->longText('description');
             $table->timestamps();
+
         });
+
+       
     }
 
     /**
@@ -36,5 +43,31 @@ class CreateListingsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('listings');
+
+      
     }
 }
+
+// class RemoveCoord extends Migration {
+
+//     public function up(){
+
+//          Schema::table('listings', function($table) {
+//             $table->dropColumn('coordinates');
+//             // $table->dropColumn('view_count');
+//         });
+
+//     }
+
+//     public function down(){
+
+//           Schema::table('listings', function($table) {
+//             $table->string('coordinates');
+//             // $table->integer('view_count');
+//         });
+
+
+//     }
+
+
+// }

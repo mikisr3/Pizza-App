@@ -5,25 +5,96 @@
                 >
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Create Pizza
+                            Edit Pizza
                         </h2>
                         <p class="mb-4">Do good. Be nice. Eat pizza</p>
                     </header>
 
-                    <form method="POST" action="/listings" enctype="multipart/form-data">
+                    <form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
 
                         @csrf
 
+                        @method('PUT')
+
                         <div class="mb-6">
                             <label
-                                for="company"
+                                for="name"
                                 class="inline-block text-lg mb-2"
                                 >Pizza Name</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="name" value="{{old('name')}}"
+                                name="name" value="{{$listing->name}}"
+                            />
+
+                            @error('name')
+
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+
+                            @enderror
+                        </div>
+                         <div class="mb-6">
+                            <label for="small" class="inline-block text-lg mb-2">
+                                Small
+                            </label>
+                            <input
+                                type="number"
+                                class="border border-gray-200 rounded p-2 w-full"
+                                name="small" value="{{$listing->small}}"
+                                placeholder="Enter Price"
+                            />
+                             @error('small')
+
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+
+                            @enderror
+                          
+                        </div>
+                         <div class="mb-6">
+                            <label for="medium" class="inline-block text-lg mb-2">
+                                Medium
+                            </label>
+                            <input
+                                type="number"
+                                class="border border-gray-200 rounded p-2 w-full"
+                                name="medium" value="{{$listing->medium}}"
+                                placeholder="Enter Price"
+                            />
+                             @error('medium')
+
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+
+                            @enderror
+                          
+                        </div>
+                         <div class="mb-6">
+                            <label for="large" class="inline-block text-lg mb-2">
+                                Large
+                            </label>
+                            <input
+                                type="number"
+                                class="border border-gray-200 rounded p-2 w-full"
+                                name="large" value="{{$listing->large}}"
+                                placeholder="Enter Price"
+                            />
+                             @error('large')
+
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+
+                            @enderror
+                          
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                for="company"
+                                class="inline-block text-lg mb-2"
+                                >Shop Name</label
+                            >
+                            <input
+                                type="text"
+                                class="border border-gray-200 rounded p-2 w-full"
+                                name="company" value="{{$listing->company}}"
                             />
 
                             @error('company')
@@ -40,7 +111,7 @@
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="title" value="{{old('title')}}"
+                                name="title" value="{{$listing->title}}"
                                 placeholder="Example: Margherita"
                             />
                             @error('title')
@@ -50,7 +121,7 @@
                             @enderror
                         </div> --}}
 
-                      {{--   <div class="mb-6">
+                        <div class="mb-6">
                             <label
                                 for="location"
                                 class="inline-block text-lg mb-2"
@@ -59,7 +130,7 @@
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="location" value="{{old('location')}}"
+                                name="location" value="{{$listing->location}}"
                                 placeholder="Example: Strumica"
                             />
                             @error('location')
@@ -67,8 +138,8 @@
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
 
                             @enderror
-                        </div> --}}
-{{-- 
+                        </div>
+
                         <div class="mb-6">
                             <label
                                 for="location"
@@ -78,29 +149,29 @@
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="coord" value="{{old('coord')}}"
+                                name="coord" value="{{$listing->coordinates}}"
                                 placeholder="41.437088,22.6317838...(Optional)"
                             />
                            
-                        </div> --}}
+                        </div>
 
-                       {{--  <div class="mb-6">
+                        <div class="mb-6">
                             <label for="email" class="inline-block text-lg mb-2"
                                 >Contact Email</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="email" value="{{old('email')}}"
+                                name="email" value="{{$listing->email}}"
                             />
                             @error('email')
 
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
 
                             @enderror
-                        </div> --}}
+                        </div>
 
-                      {{--   <div class="mb-6">
+                        <div class="mb-6">
                             <label
                                 for="website"
                                 class="inline-block text-lg mb-2"
@@ -110,23 +181,23 @@
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="website" value="{{old('website')}}"
+                                name="website" value="{{$listing->website}}"
                             />
                             @error('website')
 
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
 
                             @enderror
-                        </div> --}}
+                        </div>
 
-                       {{--  <div class="mb-6">
+                        <div class="mb-6">
                             <label for="tags" class="inline-block text-lg mb-2">
                                 Tags (Comma Separated)
                             </label>
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="tags" value="{{old('tags')}}"
+                                name="tags" value="{{$listing->tags}}"
                                 placeholder="Example: Cheese,Olive,Mozzarella,Parmesan,Pepperoni"
                             />
                             @error('tags')
@@ -134,61 +205,6 @@
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
 
                             @enderror
-                        </div> --}}
-
-                        <div class="mb-6">
-                             <x-dropdown/>
-                        </div>
-
-                         <div class="mt-40 mb-6">
-                            <label for="small" class="inline-block text-lg mb-2">
-                                Small
-                            </label>
-                            <input
-                                type="number"
-                                class="border border-gray-200 rounded p-2 w-full"
-                                name="small" value="{{old('small')}}"
-                                placeholder="Enter Price"
-                            />
-                           {{--  @error('small')
-
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-
-                            @enderror --}}
-                        </div>
-
-                         <div class="mb-6">
-                            <label for="medium" class="inline-block text-lg mb-2">
-                                Medium
-                            </label>
-                            <input
-                                type="number"
-                                class="border border-gray-200 rounded p-2 w-full"
-                                name="medium" value="{{old('medium')}}"
-                                placeholder="Enter Price"
-                            />
-                           {{--  @error('medium')
-
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-
-                            @enderror --}}
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="medium" class="inline-block text-lg mb-2">
-                                Large
-                            </label>
-                            <input
-                                type="number"
-                                class="border border-gray-200 rounded p-2 w-full"
-                                name="large" value="{{old('large')}}"
-                                placeholder="Enter Price"
-                            />
-                           {{--  @error('large')
-
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-
-                            @enderror --}}
                         </div>
 
                         {{--  <div class="mb-6">
@@ -213,13 +229,18 @@
 
                         <div class="mb-6">
                             <label for="logo" class="inline-block text-lg mb-2">
-                                Pizza Image
+                                Shop Logo
                             </label>
                             <input
                                 type="file"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="logo"
                             />
+                            <img
+                            class="w-48 mr-6 mb-6"
+                             src="{{$listing->logo ? asset('storage/'.$listing->logo) : asset('/images/pizza-logo.png')}}"
+                            alt=""
+                        />
 
                              @error('logo')
 
@@ -242,7 +263,7 @@
                                 rows="10"
                                 
                             >
-                                {{old('description')}}
+                                {{$listing->description}}
                             </textarea>
 
                             @error('description')
@@ -256,7 +277,7 @@
                             <button
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Create Pizza
+                                Update Pizza
                             </button>
 
                             <a href="/" class="text-black ml-4"> Back </a>

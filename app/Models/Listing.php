@@ -25,7 +25,7 @@ class Listing extends Model
 
          if($filters['search'] ?? false){
 
-            $query->where('title','like','%'.request('search').'%')
+            $query->where('listings.name','like','%'.request('search').'%')
 
             ->orWhere('description','like','%'.request('search').'%')
 
@@ -36,9 +36,11 @@ class Listing extends Model
          }
 
 
+    }
 
+    public function user(){
 
-
+      return $this->belongsTo(User::class,'user_id');
 
 
 

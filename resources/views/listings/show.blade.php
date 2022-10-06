@@ -17,13 +17,13 @@
                             alt=""
                         />
 
-                        <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
-                        <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
+                        <h3 class="text-2xl mb-2">{{$listing->name}}</h3>
+                        <div class="text-xl font-bold mb-4 pt-2 text-red-700">{{$listing->company}}</div>
 
                         <x-listing-tags :tagsCsv="$listing->tags"/>
 
                         <div class="text-lg my-4">
-                            <i class="fa-solid fa-location-dot"></i>{{$listing->location}}
+                            <i class="fa-solid fa-location-dot pr-4"></i>{{$listing->location}}
                         </div>
                         <div class="border border-gray-200 w-full mb-6"></div>
 
@@ -82,7 +82,7 @@
                          @endif
 
                             <h3 class="text-3xl font-bold mb-4">
-                                Job Description
+                                Pizza Description
                             </h3>
                             <div class="text-lg space-y-6">
 
@@ -96,11 +96,11 @@
                                     href="mailto:{{$listing->email}}"
                                     class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
                                     ><i class="fa-solid fa-envelope"></i>
-                                    Contact Employer</a
+                                    Contact Shop</a
                                 >
 
                                 <a
-                                    href="{{$listing->website}}"
+                                    href="//{{$listing->website}}"
                                     target="_blank"
                                     class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
                                     ><i class="fa-solid fa-globe"></i> Visit
@@ -111,14 +111,28 @@
                     </div>
                 </x-card>
 
-                <x-card class="mt-4 p-2 flex space-x-6">
+                {{-- <x-card class="mt-4 p-2 flex space-x-6">
 
                     <a href="/listings/{{$listing->id}}/edit">
                         <i class="fa-solid fa-pencil"></i>Edit
                     </a>
+
+                    <form method="POST" action="/listings/{{$listing->id}}">
+
+                        @csrf
+
+                        @method('DELETE')
+
+                        <button class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                        
+
+
+
+
+                    </form>
                     
 
-                </x-card>
+                </x-card> --}}
             </div>
 
             </x-layout>
